@@ -1,0 +1,44 @@
+.filterTabContainer {
+  width: 100%;
+  padding: 1rem;
+  background: #FFFAE6;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(139, 117, 0, 0.15);
+  border: 1px solid rgba(139, 117, 0, 0.1);
+}
+
+.filterSpace {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filterSelect {
+  width: 100% !important;
+}
+
+.filterSelect :global(.ant-select-selector) {
+  background-color: #FFF9DB !important;
+  border-color: #D4B106 !important;
+}
+
+.filterSelect:hover :global(.ant-select-selector) {
+  border-color: #8B7500 !important;
+}
+
+.filterSelect :global(.ant-select-selection-placeholder) {
+  color: #8B7500 !important;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .filterSpace {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .filterSelect {
+    width: 200px !important;
+  }
+} 

@@ -1,0 +1,196 @@
+/* ../styles/PropertyDetailsPage.module.css */
+
+.detailsPageContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px; /* No padding here, handle with child elements or rows */
+    background-color: #f9f9f9; /* Light background for the page */
+    min-height: 100vh;
+  }
+  
+  .detailsCarousel .carouselImageContainer {
+    height: 300px; /* Mobile height */
+    background-color: #e0e0e0; /* Placeholder while image loads */
+    overflow: hidden;
+  }
+  
+  .detailsCarouselImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, might crop */
+  }
+  
+  .mainContentRow {
+    padding: 20px;
+  }
+  
+  /* Specific styling for carousel dots */
+  .detailsCarousel :global(.slick-dots li button) {
+    background: rgba(255, 255, 255, 0.8) !important;
+  }
+  .detailsCarousel :global(.slick-dots li.slick-active button) {
+    background: var(--ant-primary-color) !important; /* Use Ant Design primary color */
+  }
+  
+  
+  .propertyInfoCol {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  }
+  
+  .priceAndType {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .propertyPrice {
+    margin-bottom: 0 !important;
+    color: var(--ant-primary-color); /* Use Ant Design primary color */
+    font-weight: 600 !important;
+  }
+  
+  .propertyTypeTag {
+    font-size: 0.9em;
+    padding: 4px 10px;
+  }
+  
+  .propertyTitle {
+    margin-bottom: 8px !important;
+    font-weight: 500 !important;
+  }
+  
+  .propertyLocation {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 16px !important;
+  }
+  
+  .propertySpecs {
+    margin-bottom: 20px !important;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0; /* Light separator */
+  }
+  
+  .specItem {
+    font-size: 0.95em;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+  
+  .specItem :global(.anticon) {
+    margin-right: 8px;
+    color: var(--ant-primary-color-disabled);
+  }
+  
+  .section {
+    margin-top: 16px;
+  }
+  
+  .section :global(.ant-typography-secondary) { /* targeting antd class */
+    line-height: 1.7;
+  }
+  
+  .fullDescription {
+    line-height: 1.7;
+    color: #444;
+  }
+  
+  .amenityTag {
+    font-size: 0.9em;
+    padding: 5px 10px;
+  }
+  
+  /* Agent Card */
+  .agentInfoCol {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+    /* On mobile, this column will stack below.
+       On md and up, it will be a sidebar. */
+  }
+  
+  .agentCard {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .userDetails {
+    margin-left: 16px;
+  }
+  
+  .userName {
+    font-size: 1.1em;
+    display: block;
+  }
+  .userCompany {
+    font-size: 0.9em;
+    margin-bottom: 0 !important;
+  }
+  .userCompanyDescription {
+    font-size: 0.85em;
+    margin-bottom: 20px !important;
+    color: #666;
+  }
+  
+  .contactButton {
+    font-weight: 500;
+  }
+  
+  /* Affix styling */
+  .desktopAffix {
+    display: none; /* Hidden on mobile */
+  }
+  
+  .mobileContactAffix {
+    display: block; /* Shown on mobile */
+    padding: 10px 15px; /* Add some padding around the button */
+    background-color: #fff; /* Give it a background to lift it from content */
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.1); /* Add a top shadow */
+  }
+  
+  .mobileContactButton {
+    width: 100%;
+  }
+  
+  
+  /* --- Desktop & Larger Screen Adjustments --- */
+  @media (min-width: 768px) { /* Ant Design's 'md' breakpoint */
+    .detailsCarousel .carouselImageContainer {
+      height: 450px; /* Taller carousel on desktop */
+    }
+  
+    .mainContentRow {
+      padding: 24px 24px 40px 24px; /* More padding around content on desktop */
+    }
+  
+    .propertyInfoCol {
+       /* Add more padding if needed */
+    }
+  
+    .desktopAffix {
+      display: block; /* Show desktop affix */
+    }
+    .mobileContactAffix {
+      display: none; /* Hide mobile sticky button */
+    }
+  }
+  
+  @media (min-width: 992px) { /* Ant Design's 'lg' breakpoint */
+    .detailsCarousel .carouselImageContainer {
+      height: 550px;
+    }
+  }

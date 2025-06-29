@@ -1,0 +1,62 @@
+/* Mobile-first styles */
+.appLayout {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #FFF9DB 0%, #FFFDF7 100%);
+}
+
+.appContent {
+  padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.filterSection {
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+}
+
+.propertyGrid {
+  width: 100%;
+  padding: 0 0.5rem;
+}
+
+.propertyCol {
+  margin-bottom: 1rem;
+}
+
+.emptyState {
+  background: #FFFAE6;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px dashed rgba(139, 117, 0, 0.2);
+  color: #8B7500;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .appContent {
+    padding: 2rem;
+  }
+
+  .filterSection {
+    padding: 1rem;
+  }
+
+  .propertyGrid {
+    padding: 0 1rem;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .appContent {
+    max-width: 1200px;
+    padding: 2rem;
+  }
+
+  .propertyGrid {
+    padding: 0 1.5rem;
+  }
+} 

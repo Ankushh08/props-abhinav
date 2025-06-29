@@ -1,0 +1,87 @@
+.propertyCard {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #FFFAE6 !important;
+  border: 1px solid rgba(139, 117, 0, 0.1) !important;
+  transition: all 0.3s ease;
+}
+
+.propertyCard:hover {
+  box-shadow: 0 4px 12px rgba(139, 117, 0, 0.2) !important;
+  transform: translateY(-2px);
+}
+
+.carouselImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.carouselDots {
+  bottom: 12px !important;
+}
+
+.carouselDots li button {
+  background: rgba(255, 215, 0, 0.6) !important;
+}
+
+.carouselDots li.slick-active button {
+  background: #FFD700 !important;
+}
+
+.userInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 215, 0, 0.05);
+  border-bottom: 1px solid rgba(139, 117, 0, 0.1);
+}
+
+.userDetails {
+  flex: 1;
+  min-width: 0;
+}
+
+.companyDescription {
+  margin-bottom: 0 !important;
+  font-size: 0.9rem;
+  color: #8B7500 !important;
+}
+
+.propertyLocation {
+  margin-bottom: 0.5rem !important;
+  color: #8B7500 !important;
+}
+
+.propertySpecs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  color: #2C2400;
+}
+
+.propertyPrice {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0 !important;
+  color: #8B7500 !important;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .carouselImage {
+    height: 250px;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .carouselImage {
+    height: 300px;
+  }
+} 
