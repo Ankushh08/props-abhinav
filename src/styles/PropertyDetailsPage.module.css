@@ -1,15 +1,16 @@
 /* ../styles/PropertyDetailsPage.module.css */
 
 .detailsPageContainer {
-    max-width: 1200px;
+    max-width: 95vw;
     margin: 0 auto;
-    padding: 0px; /* No padding here, handle with child elements or rows */
+    padding: 0; /* No padding here, handle with child elements or rows */
     background-color: #f9f9f9; /* Light background for the page */
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
   
   .detailsCarousel .carouselImageContainer {
-    height: 300px; /* Mobile height */
+    height: 250px; /* Smaller height for mobile */
     background-color: #e0e0e0; /* Placeholder while image loads */
     overflow: hidden;
   }
@@ -21,7 +22,7 @@
   }
   
   .mainContentRow {
-    padding: 20px;
+    padding: 16px; /* Reduced padding for mobile */
   }
   
   /* Specific styling for carousel dots */
@@ -35,15 +36,16 @@
   
   .propertyInfoCol {
     background-color: #fff;
-    padding: 24px;
+    padding: 16px; /* Reduced padding for mobile */
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
   }
   
   .priceAndType {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Stack vertically on mobile */
+    align-items: flex-start; /* Align to start on mobile */
+    gap: 8px; /* Add gap between elements */
     margin-bottom: 12px;
   }
   
@@ -51,6 +53,8 @@
     margin-bottom: 0 !important;
     color: var(--ant-primary-color); /* Use Ant Design primary color */
     font-weight: 600 !important;
+    font-size: 1.5rem !important; /* Smaller font size for mobile */
+    word-break: break-word; /* Prevent text overflow */
   }
   
   .propertyTypeTag {
@@ -61,25 +65,30 @@
   .propertyTitle {
     margin-bottom: 8px !important;
     font-weight: 500 !important;
+    font-size: 1.1rem !important; /* Smaller font size for mobile */
+    word-break: break-word; /* Prevent text overflow */
   }
   
   .propertyLocation {
-    font-size: 1em;
+    font-size: 0.9em; /* Smaller font for mobile */
     color: #555;
     margin-bottom: 16px !important;
+    word-break: break-word; /* Prevent text overflow */
   }
   
   .propertySpecs {
     margin-bottom: 20px !important;
     padding-bottom: 20px;
     border-bottom: 1px solid #f0f0f0; /* Light separator */
+    flex-wrap: wrap; /* Allow wrapping */
   }
   
   .specItem {
-    font-size: 0.95em;
+    font-size: 0.9em; /* Smaller font for mobile */
     color: #333;
     display: flex;
     align-items: center;
+    margin-bottom: 8px; /* Add bottom margin for mobile */
   }
   
   .specItem :global(.anticon) {
@@ -98,26 +107,29 @@
   .fullDescription {
     line-height: 1.7;
     color: #444;
+    word-break: break-word; /* Prevent text overflow */
   }
   
   .amenityTag {
-    font-size: 0.9em;
-    padding: 5px 10px;
+    font-size: 0.85em; /* Smaller font for mobile */
+    padding: 4px 8px; /* Smaller padding for mobile */
+    margin-bottom: 4px; /* Add bottom margin */
   }
   
   /* Agent Card */
   .agentInfoCol {
     background-color: #fff;
-    padding: 24px;
+    padding: 16px; /* Reduced padding for mobile */
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+    margin-top: 16px; /* Add top margin on mobile */
     /* On mobile, this column will stack below.
        On md and up, it will be a sidebar. */
   }
   
   .agentCard {
     background-color: #fff;
-    padding: 20px;
+    padding: 16px; /* Reduced padding for mobile */
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
   }
@@ -126,24 +138,30 @@
     display: flex;
     align-items: center;
     margin-bottom: 16px;
+    flex-wrap: wrap; /* Allow wrapping on very small screens */
   }
   
   .userDetails {
-    margin-left: 16px;
+    margin-left: 12px; /* Reduced margin for mobile */
+    flex: 1; /* Take remaining space */
+    min-width: 0; /* Allow text to wrap */
   }
   
   .userName {
-    font-size: 1.1em;
+    font-size: 1em; /* Smaller font for mobile */
     display: block;
+    word-break: break-word; /* Prevent text overflow */
   }
   .userCompany {
-    font-size: 0.9em;
+    font-size: 0.85em; /* Smaller font for mobile */
     margin-bottom: 0 !important;
+    word-break: break-word; /* Prevent text overflow */
   }
   .userCompanyDescription {
-    font-size: 0.85em;
+    font-size: 0.8em; /* Smaller font for mobile */
     margin-bottom: 20px !important;
     color: #666;
+    word-break: break-word; /* Prevent text overflow */
   }
   
   .contactButton {
@@ -155,17 +173,78 @@
     display: none; /* Hidden on mobile */
   }
   
-  .mobileContactAffix {
-    display: block; /* Shown on mobile */
-    padding: 10px 15px; /* Add some padding around the button */
-    background-color: #fff; /* Give it a background to lift it from content */
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.1); /* Add a top shadow */
-  }
-  
   .mobileContactButton {
     width: 100%;
+    margin: 0 16px; /* Add horizontal margin */
+    max-width: calc(100% - 32px); /* Ensure it doesn't overflow */
   }
   
+  
+  /* --- Tablet Adjustments --- */
+  @media (min-width: 576px) { /* Small tablets and up */
+    .mainContentRow {
+      padding: 20px;
+    }
+    
+    .propertyInfoCol {
+      padding: 20px;
+    }
+    
+    .agentInfoCol {
+      padding: 20px;
+      margin-top: 0; /* Remove top margin on tablet */
+    }
+    
+    .agentCard {
+      padding: 20px;
+    }
+    
+    .priceAndType {
+      flex-direction: row; /* Back to horizontal on tablet */
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .propertyPrice {
+      font-size: 1.8rem !important;
+    }
+    
+    .propertyTitle {
+      font-size: 1.2rem !important;
+    }
+    
+    .propertyLocation {
+      font-size: 1em;
+    }
+    
+    .specItem {
+      font-size: 0.95em;
+      margin-bottom: 0; /* Remove bottom margin on tablet */
+    }
+    
+    .amenityTag {
+      font-size: 0.9em;
+      padding: 5px 10px;
+      margin-bottom: 0; /* Remove bottom margin on tablet */
+    }
+    
+    .userName {
+      font-size: 1.1em;
+    }
+    
+    .userCompany {
+      font-size: 0.9em;
+    }
+    
+    .userCompanyDescription {
+      font-size: 0.85em;
+    }
+    
+    .mobileContactButton {
+      margin: 0 20px;
+      max-width: calc(100% - 40px);
+    }
+  }
   
   /* --- Desktop & Larger Screen Adjustments --- */
   @media (min-width: 768px) { /* Ant Design's 'md' breakpoint */
@@ -176,15 +255,57 @@
     .mainContentRow {
       padding: 24px 24px 40px 24px; /* More padding around content on desktop */
     }
-  
+    
     .propertyInfoCol {
-       /* Add more padding if needed */
+      padding: 24px;
+    }
+    
+    .agentInfoCol {
+      padding: 24px;
+    }
+    
+    .agentCard {
+      padding: 20px;
+    }
+    
+    .propertyPrice {
+      font-size: 2rem !important;
+    }
+    
+    .propertyTitle {
+      font-size: 1.3rem !important;
+    }
+    
+    .propertyLocation {
+      font-size: 1em;
+    }
+    
+    .specItem {
+      font-size: 0.95em;
+    }
+    
+    .amenityTag {
+      font-size: 0.9em;
+      padding: 5px 10px;
+    }
+    
+    .userName {
+      font-size: 1.1em;
+    }
+    
+    .userCompany {
+      font-size: 0.9em;
+    }
+    
+    .userCompanyDescription {
+      font-size: 0.85em;
     }
   
     .desktopAffix {
       display: block; /* Show desktop affix */
     }
-    .mobileContactAffix {
+    
+    .mobileContactButton {
       display: none; /* Hide mobile sticky button */
     }
   }
@@ -192,5 +313,70 @@
   @media (min-width: 992px) { /* Ant Design's 'lg' breakpoint */
     .detailsCarousel .carouselImageContainer {
       height: 550px;
+    }
+    
+    .propertyPrice {
+      font-size: 2.2rem !important;
+    }
+    
+    .propertyTitle {
+      font-size: 1.4rem !important;
+    }
+  }
+  
+  /* --- Extra Small Mobile Adjustments --- */
+  @media (max-width: 375px) { /* iPhone SE and smaller */
+    .mainContentRow {
+      padding: 12px;
+    }
+    
+    .propertyInfoCol {
+      padding: 12px;
+    }
+    
+    .agentInfoCol {
+      padding: 12px;
+    }
+    
+    .agentCard {
+      padding: 12px;
+    }
+    
+    .propertyPrice {
+      font-size: 1.3rem !important;
+    }
+    
+    .propertyTitle {
+      font-size: 1rem !important;
+    }
+    
+    .propertyLocation {
+      font-size: 0.85em;
+    }
+    
+    .specItem {
+      font-size: 0.85em;
+    }
+    
+    .amenityTag {
+      font-size: 0.8em;
+      padding: 3px 6px;
+    }
+    
+    .userName {
+      font-size: 0.95em;
+    }
+    
+    .userCompany {
+      font-size: 0.8em;
+    }
+    
+    .userCompanyDescription {
+      font-size: 0.75em;
+    }
+    
+    .mobileContactButton {
+      margin: 0 12px;
+      max-width: calc(100% - 24px);
     }
   }

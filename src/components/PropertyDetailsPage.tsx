@@ -22,9 +22,10 @@ import {
   CheckCircleOutlined, // For amenities
   MessageOutlined, // For contact button
 } from "@ant-design/icons";
-import { properties, Property, User, users } from "../sampleData"; // Assuming you have this
+import { Property, User, users } from "../sampleData"; // Assuming you have this
 import styles from "../styles/PropertyDetailsPage.module.css"; // We'll create this CSS file
 import { useParams } from "react-router-dom";
+import { usePropertyStore } from "../store/propertyStore";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -36,7 +37,8 @@ interface PropertyDetailsPageProps {
 const PropertyDetailsPage: React.FC<any> = ({
 }) => {
     const { id } = useParams(); 
-    const property = properties.find((property) => property.id === id) || {} as any;
+    const getPropertyById = usePropertyStore((state) => state.getPropertyById);
+    const property = getPropertyById(id || '') || {} as any;
     const user = users.find((user) => user.id === property.userId) || {} as any;
   return (
     <div className={styles.detailsPageContainer}>
@@ -64,10 +66,10 @@ const PropertyDetailsPage: React.FC<any> = ({
             {/* Price and Type */}
             <div className={styles.priceAndType}>
               <Title level={2} className={styles.propertyPrice}>
-                <DollarOutlined /> {property.price.toLocaleString("en-IN")}
+                <DollarOutlined /> {property.price?.toLocaleString("en-IN")}
               </Title>
               <Tag color="blue" className={styles.propertyTypeTag}>
-                Property Type.
+                {property.type || "Property"}
               </Tag>
             </div>
 

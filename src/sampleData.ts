@@ -49,6 +49,13 @@ export interface User {
       company: 'Home Solutions Inc.',
       companyDescription: 'Innovative solutions for modern living.',
     },
+    {
+      id: 'u5',
+      name: 'Abhinav Ashish',
+      dpUrl: 'https://api.dicebear.com/7.x/personas/svg?seed=Abhinav',
+      company: 'Abhinav Ashish',
+      companyDescription: 'Your trusted partner in property investments.',
+    },
   ];
   
   export const properties: Property[] = [

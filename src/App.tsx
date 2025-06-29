@@ -7,7 +7,8 @@ import PropertyCard from './components/PropertyCard';
 import { properties, users, Property, User } from './sampleData';
 import styles from './styles/App.module.css';
 import PropertyDetailsPage from './components/PropertyDetailsPage';
-// import './styles/main.less'; // Global styles
+import AddPropertyPage from './components/AddPropertyPage';
+import { usePropertyStore } from './store/propertyStore';
 
 const { Content } = Layout;
 
@@ -15,14 +16,17 @@ const { Content } = Layout;
 const HomePageContent: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [filteredProperties, setFilteredProperties] = useState<Property[]>(properties);
-
+  const [filteredProperties, setFilteredProperties] = useState<Property[]>([]);
+  
+  // Get properties from Zustand store
+  const storeProperties = usePropertyStore((state) => state.properties);
+  console.log({storeProperties})
   // Get filter values from URL search parameters
   const companyFilter = searchParams.get('company');
   const cityFilter = searchParams.get('city');
 
   useEffect(() => {
-    let tempProperties = properties;
+    let tempProperties = storeProperties;
 
     // Apply company filter
     if (companyFilter) {
@@ -38,7 +42,7 @@ const HomePageContent: React.FC = () => {
     }
 
     setFilteredProperties(tempProperties);
-  }, [companyFilter, cityFilter]); // Re-run effect when company or city filter changes
+  }, [companyFilter, cityFilter, storeProperties]); // Re-run effect when company, city filter, or store properties change
 
   // Create a map for quick user lookup
   const userMap = useMemo(() => {
@@ -48,53 +52,66 @@ const HomePageContent: React.FC = () => {
   }, []);
 
   return (
-    <Layout style={{
-      width: "100%",
-      maxWidth: "100vw",
-    }} className={styles.appLayout}>
-      <Header />
-      <Content className={styles.appContent}>
-        <Row className={styles.filterSection}>
-          <Col xs={24}>
-            <FilterTab allProperties={properties} allUsers={users} />
-          </Col>
-        </Row>
+    <Content className={styles.appContent}>
+      <Row className={styles.filterSection}>
+        <Col xs={24}>
+          <FilterTab allProperties={storeProperties} allUsers={users} />
+        </Col>
+      </Row>
 
-        <Row gutter={[16, 16]} className={styles.propertyGrid}>
-          {filteredProperties.length > 0 ? (
-            filteredProperties.map(property => {
-              const user = userMap.get(property.userId);
-              return user ? (
-                <Col onClick={() => {
-                  navigate(`/property/${property.id}`);
-                }} key={property.id} xs={24} sm={12} md={8} lg={8} className={styles.propertyCol}>
-                  <PropertyCard property={property} user={user} />
-                </Col>
-              ) : null;
-            })
-          ) : (
-            <Col span={24}>
-              <div className={styles.emptyState}>
-                <Empty 
-                  description="No properties found matching your filters."
-                  image={Empty.PRESENTED_IMAGE_SIMPLE}
-                />
-              </div>
-            </Col>
-          )}
-        </Row>
-      </Content>
-    </Layout>
+      <Row gutter={[16, 16]} className={styles.propertyGrid}>
+        {filteredProperties.length > 0 ? (
+          filteredProperties.map(property => {
+            const user = userMap.get(property.userId);
+            return user ? (
+              <Col onClick={() => {
+                navigate(`/property/${property.id}`);
+              }} key={property.id} xs={24} sm={12} md={8} lg={8} className={styles.propertyCol}>
+                <PropertyCard property={property} user={user} />
+              </Col>
+            ) : <>{JSON.stringify(property)}</>;
+          })
+        ) : (
+          <Col span={24}>
+            <div className={styles.emptyState}>
+              <Empty 
+                description="No properties found matching your filters."
+                image={Empty.PRESENTED_IMAGE_SIMPLE}
+              />
+            </div>
+          </Col>
+        )}
+      </Row>
+    </Content>
   );
-};
+}; 
+
+const routesConfig = [
+  {
+    path: '/',
+    element: <HomePageContent />,
+  },
+  {
+    path: '/property/:id',
+    element: <PropertyDetailsPage />,
+  },
+  {
+    path: '/add-property',
+    element: <AddPropertyPage />,
+  },
+];
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePageContent />} />
-        <Route path="/property/:id" element={<PropertyDetailsPage />} />
-      </Routes>
+      <Layout style={{ width: '100%', minHeight: '100vh' }} className={styles.appLayout}>
+        <Header />
+        <Routes>
+          {routesConfig.map((route, idx) => (
+            <Route key={idx} path={route.path} element={route.element} />
+          ))}
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 };
